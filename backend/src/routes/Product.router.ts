@@ -13,6 +13,7 @@ class ProductRouter {
     router.get("/:id", (c) => this.controller.getProductById(c));
     router.post("/", (c) => this.controller.createProduct(c));
     router.put("/:id", (c) => this.controller.updateProduct(c));
+    router.patch("/:id", (c) => this.controller.updateProduct(c));
     router.delete("/:id", (c) => this.controller.deleteProduct(c));
 
     return router;

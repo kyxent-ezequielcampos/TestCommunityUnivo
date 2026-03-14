@@ -171,14 +171,14 @@ export const ProviderComponent = () => {
       </div>
 
       <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100 shadow-sm">
-        <table className="table">
+        <table className="table table-zebra w-full">
           <thead>
             <tr>
               <th>Name</th>
               <th>Address</th>
               <th>Phone</th>
               <th>Status</th>
-              <th>Actions</th>
+              <th className="text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -249,37 +249,37 @@ export const ProviderComponent = () => {
 
       <Modal title="Provider Form" open={open} onClose={() => setOpen(false)}>
         <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Name</span>
-            <input className="input input-bordered" type="text" {...register("name", { required: true })} />
+            <input className="input input-bordered w-full" type="text" {...register("name", { required: true })} />
             {formState.errors.name ? <span className="text-error text-sm">Name is required</span> : null}
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Address</span>
-            <input className="input input-bordered" type="text" {...register("address", { required: true })} />
+            <input className="input input-bordered w-full" type="text" {...register("address", { required: true })} />
             {formState.errors.address ? <span className="text-error text-sm">Address is required</span> : null}
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Phone</span>
-            <input className="input input-bordered" type="text" {...register("phone", { required: true })} />
+            <input className="input input-bordered w-full" type="text" {...register("phone", { required: true })} />
             {formState.errors.phone ? <span className="text-error text-sm">Phone is required</span> : null}
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Email</span>
-            <input className="input input-bordered" type="email" {...register("email")} />
+            <input className="input input-bordered w-full" type="email" {...register("email")} />
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Description</span>
-            <textarea className="textarea textarea-bordered" rows={3} {...register("description")} />
+            <textarea className="textarea textarea-bordered w-full" rows={3} {...register("description")} />
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Status</span>
-            <select className="select select-bordered" {...register("status")}>
+            <select className="select select-bordered w-full" {...register("status")}>
               <option value="active">active</option>
               <option value="inactive">inactive</option>
             </select>

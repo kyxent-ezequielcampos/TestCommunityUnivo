@@ -13,6 +13,7 @@ class ProviderRouter {
     router.get("/:id", (c) => this.controller.getProviderById(c));
     router.post("/", (c) => this.controller.createProvider(c));
     router.put("/:id", (c) => this.controller.updateProvider(c));
+    router.patch("/:id", (c) => this.controller.updateProvider(c));
     router.delete("/:id", (c) => this.controller.deleteProvider(c));
     return router;
   }

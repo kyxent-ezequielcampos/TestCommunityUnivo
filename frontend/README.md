@@ -1,42 +1,68 @@
 # Frontend - Products & Providers UI
 
-React + TypeScript + Vite + DaisyUI application for managing products and providers.
+React + TypeScript + Vite + DaisyUI web app for managing products and providers.
 
-## Stack
+## ✅ What this project includes
+- Full CRUD for **Products** and **Providers**
+- Pagination, sorting, filtering, and search
+- Product/provider relationship management
+- Responsive design with a clean UI
+- Toast notifications, loading states, and form validation
+
+---
+
+## 🧰 Stack
 - React 19
 - TypeScript
 - Vite
-- DaisyUI + Tailwind CSS
-- Axios + React Hook Form
+- Tailwind CSS + DaisyUI
+- Axios
 
-## Features
-- Full CRUD for providers
-- Full CRUD for products
-- Product-provider relationship handling
-- Pagination (providers and products)
-- Sorting, filtering and search
-- Product detail view and provider detail view
-- Loading states, error messages and toast notifications
+---
 
-## Environment variables
-Create `.env` in `frontend/`:
+## 🚀 Run locally
+### 1) Prerequisites
+- Node.js 20+ (or Bun) 
+- Backend API running (see backend README)
+
+### 2) Environment variables
+Create a `.env` file in the `frontend/` folder:
 
 ```env
 VITE_BACKEND_URL=http://localhost:3000
 ```
 
-## Install & run
+### 3) Install & start
 ```bash
 cd frontend
 bun install
 bun run dev
 ```
 
-## Build
+### 4) Build
 ```bash
 bun run build
 ```
 
-## Routes
-- `/products`
-- `/providers`
+---
+
+## 🌐 Routes
+- `/products` - Product management (CRUD + filters)
+- `/providers` - Provider management (CRUD + filters)
+
+---
+
+## 🐳 Docker (Dokku / container deployment)
+From the `frontend/` folder:
+
+```bash
+docker build -t testcommunity-frontend .
+# Replace 80 with another port if needed
+docker run -p 80:80 testcommunity-frontend
+```
+
+---
+
+## 📌 Notes
+- The UI fetches providers list to show provider names in the products table.
+- Filtering, sorting, and pagination are driven by query params to the API.

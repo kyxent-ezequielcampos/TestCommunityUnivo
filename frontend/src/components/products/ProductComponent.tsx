@@ -202,14 +202,14 @@ export const ProductComponent = () => {
       </div>
 
       <div className="overflow-x-auto rounded-box border border-base-300 bg-base-100 shadow-sm">
-        <table className="table">
+        <table className="table table-zebra w-full">
           <thead>
             <tr>
               <th>Name</th>
               <th>Price</th>
               <th>Provider</th>
               <th>Description</th>
-              <th>Actions</th>
+              <th className="text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -276,27 +276,27 @@ export const ProductComponent = () => {
 
       <Modal title="Product Form" open={formOpen} onClose={() => setFormOpen(false)}>
         <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Name</span>
-            <input className="input input-bordered" {...register("name", { required: true })} />
+            <input className="input input-bordered w-full" {...register("name", { required: true })} />
             {formState.errors.name ? <span className="text-error text-sm">Name is required</span> : null}
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Price</span>
             <input
               type="number"
               min={0}
               step="0.01"
-              className="input input-bordered"
+              className="input input-bordered w-full"
               {...register("price", { required: true, valueAsNumber: true, min: 0 })}
             />
             {formState.errors.price ? <span className="text-error text-sm">Valid price is required</span> : null}
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Provider</span>
-            <select className="select select-bordered" {...register("providerId", { required: true })}>
+            <select className="select select-bordered w-full" {...register("providerId", { required: true })}>
               <option value="">Select provider</option>
               {providers.map((provider) => (
                 <option key={provider._id} value={provider._id}>
@@ -309,9 +309,9 @@ export const ProductComponent = () => {
             ) : null}
           </label>
 
-          <label className="form-control">
+          <label className="form-control w-full">
             <span className="label-text">Description</span>
-            <textarea className="textarea textarea-bordered" rows={3} {...register("description")} />
+            <textarea className="textarea textarea-bordered w-full" rows={3} {...register("description")} />
           </label>
 
           <div className="modal-action">

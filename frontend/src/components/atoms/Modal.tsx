@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { createPortal } from "react-dom";
 
 interface ModalComponentProps {
   open: boolean;
@@ -6,13 +7,13 @@ interface ModalComponentProps {
   title?: string;
   children: React.ReactNode;
   actions?: React.ReactNode;
-  size?: 'sm' | 'md' | 'lg';
+  size?: "sm" | "md" | "lg";
 }
 
 const sizeClass = {
-  sm: 'sm:max-w-sm w-full max-w-xs',
-  md: 'sm:max-w-md w-full max-w-xs',
-  lg: 'sm:max-w-5xl w-full max-w-full',
+  sm: "max-w-sm",
+  md: "max-w-xl",
+  lg: "max-w-5xl",
 };
 
 export const Modal: React.FC<ModalComponentProps> = ({
@@ -21,19 +22,51 @@ export const Modal: React.FC<ModalComponentProps> = ({
   title,
   children,
   actions,
-  size = 'md',
+  size = "md",
 }) => {
   if (!open) return null;
-  return (
-    <dialog open className={`modal modal-open`}>
-      <div className={`modal-box ${sizeClass[size]} w-full max-w-full break-words  p-4 sm:p-6`}>
-        {title && <h3 className="font-bold text-lg mb-4">{title}</h3>}
-        <div className='grid grid-cols-1 md:grid-cols-1 gap-4'>{children}</div>
-        {actions && <div className="modal-action">{actions}</div>}
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 bg-black/40"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        className={`relative w-full ${sizeClass[size]} rounded-xl bg-base-100 shadow-2xl ring-1 ring-black/10`}
+      >
+        <div className="flex items-center justify-between border-b border-base-200 px-5 py-4">
+          <div className="text-lg font-semibold text-base-content">{title ?? ""}</div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="btn btn-square btn-ghost"
+            aria-label="Close modal"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="max-h-[70vh] overflow-y-auto px-5 py-4">
+          {children}
+        </div>
+
+        {actions ? (
+          <div className="border-t border-base-200 px-5 py-4 flex items-center justify-end gap-2">
+            {actions}
+          </div>
+        ) : null}
       </div>
-      <form method="dialog" className="modal-backdrop">
-        <button onClick={onClose}>close</button>
-      </form>
-    </dialog>
+    </div>,
+    document.body,
   );
-}; 
+};
